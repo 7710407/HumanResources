@@ -2,6 +2,7 @@ package com.davtyan.humanresources;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
@@ -12,7 +13,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private Context context;
     private static final String DB_NAME = "HumanResourses.db";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
     private static final String TABLE_NAME = "employees";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_NAME = "name";
@@ -52,5 +53,15 @@ public class DBHelper extends SQLiteOpenHelper {
         } else {
             Toast.makeText(context, "Employee successfully added", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    Cursor readAllData() {
+        String query = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        if(db != null) {
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
     }
 }
