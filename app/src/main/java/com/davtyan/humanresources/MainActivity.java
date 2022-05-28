@@ -1,5 +1,6 @@
 package com.davtyan.humanresources;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,10 +22,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView rvPeople;
     FloatingActionButton btnAdd;
     DBHelper dbHelper;
-    ArrayList<String> ids;
-    ArrayList<String> names;
-    ArrayList<String> divisions;
-    ArrayList<String> salaries;
+    ArrayList<Employee> employees;
     CustomAdapter customAdapter;
 
     @Override
@@ -43,16 +42,21 @@ public class MainActivity extends AppCompatActivity {
         });
 
         dbHelper = new DBHelper(MainActivity.this);
-        ids = new ArrayList<String>();
-        names = new ArrayList<String>();
-        divisions = new ArrayList<String>();
-        salaries = new ArrayList<String>();
+        employees = new ArrayList<Employee>();
 
         fetchData();
 
         rvPeople.setLayoutManager(new LinearLayoutManager(this));
-        customAdapter = new CustomAdapter(this, ids, names, divisions, salaries);
+        customAdapter = new CustomAdapter(MainActivity.this, this, employees);
         rvPeople.setAdapter(customAdapter);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1) {
+            recreate();
+        }
     }
 
     void fetchData() {
@@ -61,10 +65,12 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "No data.", Toast.LENGTH_SHORT).show();
         } else {
             while (cursor.moveToNext()) {
-                ids.add(cursor.getString(0));
-                names.add(cursor.getString(1));
-                divisions.add(cursor.getString(2));
-                salaries.add(cursor.getString(3));
+                Employee employee = new Employee();
+                employee.setId(cursor.getString(0));
+                employee.setName(cursor.getString(1));
+                employee.setDivision(cursor.getString(2));
+                employee.setSalary(cursor.getString(3));
+                employees.add(employee);
             }
         }
     }

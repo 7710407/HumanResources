@@ -20,7 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String COLUMN_DIVISION = "division";
     private static final String COLUMN_SALARY = "salary";
 
-    public DBHelper(@Nullable Context context) {
+    DBHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         this.context = context;
     }
@@ -41,12 +41,12 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    void addEmployee(String name, String division, int salary) {
+    void addEmployee(Employee employee) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_NAME, name);
-        cv.put(COLUMN_DIVISION, division);
-        cv.put(COLUMN_SALARY, salary);
+        cv.put(COLUMN_NAME, employee.getName());
+        cv.put(COLUMN_DIVISION, employee.getDivision());
+        cv.put(COLUMN_SALARY, employee.getSalary());
         long result = db.insert(TABLE_NAME, null, cv);
         if(result == -1) {
             Toast.makeText(context, "Failed to add employee", Toast.LENGTH_SHORT).show();
@@ -63,5 +63,20 @@ public class DBHelper extends SQLiteOpenHelper {
             cursor = db.rawQuery(query, null);
         }
         return cursor;
+    }
+
+    void updateEmployeeData(Employee employee) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_NAME, employee.getName());
+        cv.put(COLUMN_DIVISION, employee.getDivision());
+        cv.put(COLUMN_SALARY, employee.getSalary());
+
+        long result = db.update(TABLE_NAME, cv, "id=?", new String[]{employee.getId()});
+        if(result == -1) {
+            Toast.makeText(context, "Failed to update employee data", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Successfully updated employee data", Toast.LENGTH_SHORT).show();
+        }
     }
 }

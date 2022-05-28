@@ -1,9 +1,12 @@
 package com.davtyan.humanresources;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,21 +17,13 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
     private Context context;
-    private ArrayList ids;
-    private ArrayList names;
-    private ArrayList divisions;
-    private ArrayList salaries;
+    Activity activity;
+    private ArrayList<Employee> employees;
 
-    CustomAdapter(Context context,
-                  ArrayList ids,
-                  ArrayList names,
-                  ArrayList divisions,
-                  ArrayList salaries) {
+    CustomAdapter(Activity activity, Context context, ArrayList employees) {
+        this.activity = activity;
         this.context = context;
-        this.ids = ids;
-        this.names = names;
-        this.divisions = divisions;
-        this.salaries = salaries;
+        this.employees = employees;
     }
 
     @NonNull
@@ -41,15 +36,27 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.tvId.setText(String.valueOf(ids.get(position)));
-        holder.tvName.setText(String.valueOf(names.get(position)));
-        holder.tvDivision.setText(String.valueOf(divisions.get(position)));
-        holder.tvSalary.setText(String.valueOf(salaries.get(position)));
+        Employee employee = employees.get(position);
+        holder.tvId.setText(String.valueOf(employee.getId()));
+        holder.tvName.setText(String.valueOf(employee.getName()));
+        holder.tvDivision.setText(String.valueOf(employee.getDivision()));
+        holder.tvSalary.setText(String.valueOf(employee.getSalary()));
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, UpdateActivity.class);
+                intent.putExtra("id", String.valueOf(employee.getId()));
+                intent.putExtra("name", String.valueOf(employee.getName()));
+                intent.putExtra("division", String.valueOf(employee.getDivision()));
+                intent.putExtra("salary", String.valueOf(employee.getSalary()));
+                activity.startActivityForResult(intent, 1);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return ids.size();
+        return employees.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -57,6 +64,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         TextView tvName;
         TextView tvDivision;
         TextView tvSalary;
+        LinearLayout mainLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,6 +72,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             tvName = itemView.findViewById(R.id.tvName);
             tvDivision = itemView.findViewById(R.id.tvDivision);
             tvSalary = itemView.findViewById(R.id.tvSalary);
+            mainLayout = itemView.findViewById(R.id.mainLayout);
         }
     }
 }

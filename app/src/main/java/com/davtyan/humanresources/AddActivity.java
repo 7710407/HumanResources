@@ -26,9 +26,11 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DBHelper dbHelper = new DBHelper(AddActivity.this);
-                dbHelper.addEmployee(etName.getText().toString().trim(),
-                        etDivision.getText().toString().trim(),
-                        Integer.valueOf(etSalary.getText().toString().trim()));
+                Employee employee = new Employee();
+                employee.setName(etName.getText().toString().trim());
+                employee.setDivision(etDivision.getText().toString().trim());
+                employee.setSalary(etSalary.getText().toString().trim());
+                dbHelper.addEmployee(employee);
             }
         });
     }
