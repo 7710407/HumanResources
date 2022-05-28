@@ -37,6 +37,8 @@
         android:ems="10"
         android:hint="Salary"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etDivision"
         tools:layout_editor_absoluteX="98dp" />
 
@@ -47,6 +49,7 @@
         android:layout_marginTop="50dp"
         android:text="Add"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etSalary"
         tools:layout_editor_absoluteX="202dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

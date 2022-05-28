@@ -20,7 +20,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPeople"
-        android:paddingTop="?actionBarSize"
+        android:paddingTop="?attr/actionBarSize"
         android:layout_width="409dp"
         android:layout_height="729dp"
         app:layout_constraintEnd_toEndOf="parent"

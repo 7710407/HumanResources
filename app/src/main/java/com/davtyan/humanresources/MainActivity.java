@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         rvPeople = findViewById(R.id.rvPeople);
+
         btnAdd = findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,13 +50,13 @@ public class MainActivity extends AppCompatActivity {
 
         fetchData();
 
-        customAdapter = new CustomAdapter(MainActivity.this, ids, names, divisions, salaries);
+        rvPeople.setLayoutManager(new LinearLayoutManager(this));
+        customAdapter = new CustomAdapter(this, ids, names, divisions, salaries);
         rvPeople.setAdapter(customAdapter);
-        rvPeople.setLayoutManager(new LinearLayoutManager(MainActivity.this));
     }
 
     void fetchData() {
-        Cursor cursor = dbHelper.readAllData();
+        Cursor cursor = dbHelper.fetchData();
         if(cursor.getCount() == 0) {
             Toast.makeText(this, "No data.", Toast.LENGTH_SHORT).show();
         } else {
