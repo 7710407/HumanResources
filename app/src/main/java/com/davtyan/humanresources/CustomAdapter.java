@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,6 +21,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private Context context;
     Activity activity;
     private ArrayList<Employee> employees;
+
+    Animation animation;
 
     CustomAdapter(Activity activity, Context context, ArrayList employees) {
         this.activity = activity;
@@ -73,6 +77,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             tvDivision = itemView.findViewById(R.id.tvDivision);
             tvSalary = itemView.findViewById(R.id.tvSalary);
             mainLayout = itemView.findViewById(R.id.mainLayout);
+            animation = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
+            mainLayout.setAnimation(animation);
         }
     }
 }

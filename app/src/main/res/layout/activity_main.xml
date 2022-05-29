@@ -20,10 +20,37 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPeople"
-        android:paddingTop="?attr/actionBarSize"
         android:layout_width="409dp"
         android:layout_height="729dp"
+        android:paddingTop="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivNoData"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:alpha="0.5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rvPeople"
+        app:srcCompat="@drawable/ic_baseline_clear_24" />
+
+<!--        android:visibility="gone"-->
+    <TextView
+        android:id="@+id/tvNoData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:alpha="0.5"
+        android:text="No Data."
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/rvPeople"
+        app:layout_constraintTop_toBottomOf="@+id/ivNoData" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

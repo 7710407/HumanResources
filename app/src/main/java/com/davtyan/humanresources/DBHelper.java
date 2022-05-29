@@ -79,4 +79,19 @@ public class DBHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Successfully updated employee data", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void deleteEmployeeData(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(TABLE_NAME, "id=?", new String[]{id});
+        if(result == -1) {
+            Toast.makeText(context, "Failed to delete employee data", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Successfully deleted employee data", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    void deleteAllEmployeesData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_NAME);
+    }
 }

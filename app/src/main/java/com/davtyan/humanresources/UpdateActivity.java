@@ -1,7 +1,10 @@
 package com.davtyan.humanresources;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +18,7 @@ public class UpdateActivity extends AppCompatActivity {
     EditText etDivision;
     EditText etSalary;
     Button btnUpdate;
+    Button btnDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,7 @@ public class UpdateActivity extends AppCompatActivity {
         etDivision = findViewById(R.id.etDivisionUpdate);
         etSalary = findViewById(R.id.etSalaryUpdate);
         btnUpdate = findViewById(R.id.btnUpdate);
+        btnDelete = findViewById(R.id.btnDelete);
         updateIntentData();
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +43,17 @@ public class UpdateActivity extends AppCompatActivity {
                 dbHelper.updateEmployeeData(e);
             }
         });
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirmDialog();
+            }
+        });
+
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null) {
+            actionBar.setTitle(employee.getName());
+        }
     }
 
     void updateIntentData() {
@@ -59,5 +75,24 @@ public class UpdateActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "No data.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    void confirmDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete " + employee.getName() + "?");
+        builder.setMessage("Are you sure you want to delete " + employee.getName() + "?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                DBHelper dbHelper = new DBHelper(UpdateActivity.this);
+                dbHelper.deleteEmployeeData(employee.getId());
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {}
+        });
+        builder.create().show();
     }
 }

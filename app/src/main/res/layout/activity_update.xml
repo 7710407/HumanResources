@@ -53,4 +53,16 @@
         app:layout_constraintTop_toBottomOf="@+id/etSalaryUpdate"
         tools:layout_editor_absoluteX="202dp" />
 
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Delete"
+        android:textStyle="bold"
+        android:textColor="#990000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnUpdate"
+        tools:layout_editor_absoluteX="202dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
