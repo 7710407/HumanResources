@@ -24,10 +24,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     Animation animation;
 
-    CustomAdapter(Activity activity, Context context, ArrayList employees) {
+    CustomAdapter(Activity activity, Context context) {
         this.activity = activity;
         this.context = context;
+    }
+
+    public void setEmpoyees(ArrayList<Employee> employees) {
         this.employees = employees;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -60,7 +64,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public int getItemCount() {
-        return employees.size();
+        return employees == null ? 0 : employees.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
