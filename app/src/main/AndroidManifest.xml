@@ -10,15 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HumanResources">
         <activity
-            android:name=".UpdateActivity"
+            android:name=".ui.UpdateActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.MainActivity" />
         <activity
-            android:name=".AddActivity"
+            android:name=".ui.AddActivity"
             android:label="Add employee"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.MainActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
             android:label="Human Resources">
             <intent-filter>

@@ -1,4 +1,4 @@
-package com.davtyan.humanresources;
+package com.davtyan.humanresources.ui;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,6 +14,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.davtyan.humanresources.provider.Employee;
+import com.davtyan.humanresources.R;
+
 import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
@@ -24,7 +27,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     Animation animation;
 
-    CustomAdapter(Activity activity, Context context) {
+    public CustomAdapter(Activity activity, Context context) {
         this.activity = activity;
         this.context = context;
     }
@@ -45,10 +48,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Employee employee = employees.get(position);
-        holder.tvId.setText(String.valueOf(employee.getId()));
-        holder.tvName.setText(String.valueOf(employee.getName()));
-        holder.tvDivision.setText(String.valueOf(employee.getDivision()));
-        holder.tvSalary.setText(String.valueOf(employee.getSalary()));
+        holder.tvId.setText(employee.getId());
+        holder.tvName.setText(employee.getName());
+        holder.tvDivision.setText(employee.getDivision());
+        holder.tvSalary.setText(employee.getSalary());
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

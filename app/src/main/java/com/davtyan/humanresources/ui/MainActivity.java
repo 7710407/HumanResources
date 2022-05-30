@@ -1,38 +1,26 @@
-package com.davtyan.humanresources;
+package com.davtyan.humanresources.ui;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.davtyan.humanresources.provider.DBHelper;
+import com.davtyan.humanresources.provider.MainViewModel;
+import com.davtyan.humanresources.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 

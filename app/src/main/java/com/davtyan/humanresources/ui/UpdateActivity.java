@@ -1,4 +1,4 @@
-package com.davtyan.humanresources;
+package com.davtyan.humanresources.ui;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
@@ -12,13 +12,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.davtyan.humanresources.provider.DBHelper;
+import com.davtyan.humanresources.provider.Employee;
+import com.davtyan.humanresources.R;
+
 public class UpdateActivity extends AppCompatActivity {
-    Employee employee;
-    EditText etName;
-    EditText etDivision;
-    EditText etSalary;
-    Button btnUpdate;
-    Button btnDelete;
+    private Employee employee;
+    private EditText etName;
+    private EditText etDivision;
+    private EditText etSalary;
+    private Button btnUpdate;
+    private Button btnDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

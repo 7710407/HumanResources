@@ -1,10 +1,13 @@
-package com.davtyan.humanresources;
+package com.davtyan.humanresources.provider;
 
 import android.database.Cursor;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.davtyan.humanresources.provider.DBHelper;
+import com.davtyan.humanresources.provider.Employee;
 
 import java.util.ArrayList;
 

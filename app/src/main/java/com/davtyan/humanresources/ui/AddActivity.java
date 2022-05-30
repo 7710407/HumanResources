@@ -1,4 +1,4 @@
-package com.davtyan.humanresources;
+package com.davtyan.humanresources.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,11 +7,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.davtyan.humanresources.provider.DBHelper;
+import com.davtyan.humanresources.provider.Employee;
+import com.davtyan.humanresources.R;
+
 public class AddActivity extends AppCompatActivity {
-    EditText etName;
-    EditText etDivision;
-    EditText etSalary;
-    Button btnAdd;
+    private EditText etName;
+    private EditText etDivision;
+    private EditText etSalary;
+    private Button btnAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

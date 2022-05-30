@@ -1,4 +1,4 @@
-package com.davtyan.humanresources;
+package com.davtyan.humanresources.provider;
 
 public class Employee {
     private String id;

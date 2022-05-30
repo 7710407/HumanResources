@@ -1,4 +1,4 @@
-package com.davtyan.humanresources;
+package com.davtyan.humanresources.provider;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -20,7 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String COLUMN_DIVISION = "division";
     private static final String COLUMN_SALARY = "salary";
 
-    DBHelper(@Nullable Context context) {
+    public DBHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         this.context = context;
     }
@@ -41,7 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    void addEmployee(Employee employee) {
+    public void addEmployee(Employee employee) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, employee.getName());
@@ -65,7 +65,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    void updateEmployeeData(Employee employee) {
+    public void updateEmployeeData(Employee employee) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_NAME, employee.getName());
@@ -90,7 +90,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    void deleteAllEmployeesData() {
+    public void deleteAllEmployeesData() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
     }
