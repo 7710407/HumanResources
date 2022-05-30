@@ -13,13 +13,13 @@ import java.util.ArrayList;
 
 public class MainViewModel extends ViewModel {
 
-    private BDQueryTask dbExecutor = new BDQueryTask();
+    //private BDQueryTask dbExecutor = new BDQueryTask();
     private DBHelper dbHelper;
 
     public MutableLiveData<ArrayList<Employee>> liveData = new MutableLiveData<>();
 
     public void fetchData(){
-        dbExecutor.execute();
+        new BDQueryTask().execute();
     }
 
     public void setDbHelper(DBHelper dbHelper){

@@ -16,6 +16,8 @@ import com.davtyan.humanresources.provider.DBHelper;
 import com.davtyan.humanresources.provider.Employee;
 import com.davtyan.humanresources.R;
 
+import static com.davtyan.humanresources.ConstValues.*;
+
 public class UpdateActivity extends AppCompatActivity {
     private Employee employee;
     private EditText etName;
@@ -62,30 +64,30 @@ public class UpdateActivity extends AppCompatActivity {
 
     void updateIntentData() {
         Intent intent = getIntent();
-        if(intent.hasExtra("id") &&
-           intent.hasExtra("name") &&
-           intent.hasExtra("division") &&
-           intent.hasExtra("salary")
+        if(intent.hasExtra(ID) &&
+           intent.hasExtra(NAME) &&
+           intent.hasExtra(DIVISION) &&
+           intent.hasExtra(SALARY)
         ) {
             employee = new Employee();
-            employee.setId(intent.getStringExtra("id"));
-            employee.setName(intent.getStringExtra("name"));
-            employee.setDivision(intent.getStringExtra("division"));
-            employee.setSalary(intent.getStringExtra("salary"));
+            employee.setId(intent.getStringExtra(ID));
+            employee.setName(intent.getStringExtra(NAME));
+            employee.setDivision(intent.getStringExtra(DIVISION));
+            employee.setSalary(intent.getStringExtra(SALARY));
 
             etName.setText(employee.getName());
             etDivision.setText(employee.getDivision());
             etSalary.setText(employee.getSalary());
         } else {
-            Toast.makeText(this, "No data.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_data, Toast.LENGTH_SHORT).show();
         }
     }
 
     void confirmDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete " + employee.getName() + "?");
-        builder.setMessage("Are you sure you want to delete " + employee.getName() + "?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setTitle(getString(R.string.delete_) + employee.getName() + "?");
+        builder.setMessage(getString(R.string.are_you_sure) + employee.getName() + "?");
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 DBHelper dbHelper = new DBHelper(UpdateActivity.this);
@@ -93,7 +95,7 @@ public class UpdateActivity extends AppCompatActivity {
                 finish();
             }
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {}
         });

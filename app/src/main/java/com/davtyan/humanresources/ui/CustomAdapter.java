@@ -18,6 +18,7 @@ import com.davtyan.humanresources.provider.Employee;
 import com.davtyan.humanresources.R;
 
 import java.util.ArrayList;
+import static com.davtyan.humanresources.ConstValues.*;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
@@ -56,10 +57,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, UpdateActivity.class);
-                intent.putExtra("id", String.valueOf(employee.getId()));
-                intent.putExtra("name", String.valueOf(employee.getName()));
-                intent.putExtra("division", String.valueOf(employee.getDivision()));
-                intent.putExtra("salary", String.valueOf(employee.getSalary()));
+                intent.putExtra(ID, String.valueOf(employee.getId()));
+                intent.putExtra(NAME, String.valueOf(employee.getName()));
+                intent.putExtra(DIVISION, String.valueOf(employee.getDivision()));
+                intent.putExtra(SALARY, String.valueOf(employee.getSalary()));
                 activity.startActivityForResult(intent, 1);
             }
         });

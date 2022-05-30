@@ -92,9 +92,9 @@ public class MainActivity extends AppCompatActivity {
 
     void confirmDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete All?");
-        builder.setMessage("Are you sure you want to delete all employees?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.delete_all);
+        builder.setMessage(R.string.delete_all_confirmation);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 DBHelper dbHelper = new DBHelper(MainActivity.this);
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
             }

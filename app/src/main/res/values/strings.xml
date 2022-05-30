@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">HumanResources</string>
+    <string name="name">Name</string>
+    <string name="division">Division</string>
+    <string name="salary">Salary</string>
+    <string name="add">Add</string>
+    <string name="no_data">No Data.</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="delete_all_confirmation">Are you sure you want to delete all employees?</string>
+    <string name="delete_all">Delete All?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="add_fail">Failed to add employee</string>
+    <string name="add_success">Employee successfully added</string>
+    <string name="update_fail">Failed to update employee data</string>
+    <string name="update_success">Successfully updated employee data</string>
+    <string name="delete_fail">Failed to delete employee data</string>
+    <string name="delete_success">Successfully deleted employee data</string>
+    <string name="delete_all_">Delete all</string>
+    <string name="delete_">\"Delete \"</string>
+    <string name="are_you_sure">\"Are you sure you want to delete \"</string>
 </resources>
